@@ -8,16 +8,18 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
 
-  # Affichage des taches
-  ## Affichage de toutes les tâches
-  get 'tasks', to: 'tasks#index'
-  # Création de nouvelles tâches
-  get 'tasks/new', to: 'tasks#new', as: :new_task
-  post 'tasks', to: 'tasks#create'
-  ## Affichage d'une tâche en particulier
-  get 'tasks/:id', to: 'tasks#show', as: :task
-  # Modification de tâches
-  get 'tasks/:id/edit', to: 'tasks#edit', as: :edit_task
-  patch 'tasks/:id', to: 'tasks#update'
+  # # Affichage des taches
+  # ## Affichage de toutes les tâches
+  # get 'tasks', to: 'tasks#index'
+  # # Création de nouvelles tâches
+  # get 'tasks/new', to: 'tasks#new', as: :new_task
+  # post 'tasks', to: 'tasks#create'
+  # ## Affichage d'une tâche en particulier
+  # get 'tasks/:id', to: 'tasks#show', as: :task
+  # # Modification de tâches
+  # get 'tasks/:id/edit', to: 'tasks#edit', as: :edit_task
+  # patch 'tasks/:id', to: 'tasks#update'
+
+  resources :tasks
 
 end
