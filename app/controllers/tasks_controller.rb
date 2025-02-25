@@ -35,8 +35,11 @@ class TasksController < ApplicationController
   end
 
   def destroy
-    @task.destroy
-    redirect_to tasks_path, notice: "Tâche supprimée avec succès."
+    if @task.destroy
+      redirect_to tasks_path, notice: "Tâche supprimée avec succès."
+    else
+      redirect_to tasks_path, alert: "Erreur lors de la suppression."
+    end
   end
 
   private
