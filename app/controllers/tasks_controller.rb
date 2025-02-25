@@ -1,16 +1,14 @@
 class TasksController < ApplicationController
+  before_action :set_task, only: [:show, :edit, :update, :destroy]
 
-  # Affichage des tâches
   def index
     @tasks = Task.all
   end
 
-  # Affichage d'une tâche
   def show
-    @task = Task.find(params[:id])
+    # Plus besoin de @task = Task.find(params[:id]), car set_task s'en charge
   end
 
-  # Ajout d'une nouvelle tâche
   def new
     @task = Task.new
   end
@@ -24,13 +22,11 @@ class TasksController < ApplicationController
     end
   end
 
-  # Modification d'une tâche
   def edit
-    @task = Task.find(params[:id])
+    # Plus besoin de @task = Task.find(params[:id]), car set_task s'en charge
   end
 
   def update
-    @task = Task.find(params[:id])
     if @task.update(task_params)
       redirect_to task_path(@task)
     else
@@ -38,9 +34,17 @@ class TasksController < ApplicationController
     end
   end
 
+  def destroy
+    @task.destroy
+    redirect_to tasks_path, notice: "Tâche supprimée avec succès."
+  end
+
   private
 
-  # Utile pour l'ajout d'un tâche
+  def set_task
+    @task = Task.find(params[:id])
+  end
+
   def task_params
     params.require(:task).permit(:title, :details, :completed)
   end

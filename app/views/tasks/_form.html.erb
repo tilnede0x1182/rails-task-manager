@@ -1,0 +1,23 @@
+<%= form_with model: @task, local: true do |f| %>
+  <div>
+    <%= f.label :title, "Titre" %>
+    <%= f.text_field :title %>
+  </div>
+
+  <div>
+    <%= f.label :details, "Détails" %>
+    <%= f.text_area :details %>
+  </div>
+
+  <%# Affiche la case à cocher uniquement si on est en mode "édition" %>
+  <% if @task.persisted? %>
+    <div>
+      <%= f.label :completed, "Terminée ?" %>
+      <%= f.check_box :completed %>
+    </div>
+  <% end %>
+
+  <div>
+    <%= f.submit %>
+  </div>
+<% end %>
