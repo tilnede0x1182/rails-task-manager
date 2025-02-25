@@ -1,0 +1,53 @@
+##Task avec trois attributs :
+
+title (de type string) → le titre de la tâche
+details (de type text) → les détails de la tâche
+completed (de type boolean, avec une valeur par défaut false) → indique si la tâche est terminée ou non.
+
+rails generate model Task title:string details:text completed:boolean
+___
+
+Génère un contrôleur TasksController vide (sans actions) avec le bon générateur Rails.
+
+rails generate controller Tasks
+___
+
+Ajouter une route dans config/routes.rb :
+
+get 'tasks', to: 'tasks#index'
+___
+
+Ajouter une action index dans TasksController :
+
+class TasksController < ApplicationController
+  def index
+    @tasks = Task.all
+  end
+end
+___
+
+Créer une vue index.html.erb qui affiche les tâches avec une boucle :
+
+<h1>Liste des tâches</h1>
+<ul>
+  <% @tasks.each do |task| %>
+    <li><%= task.title %></li>
+  <% end %>
+</ul>
+___
+
+"Pour tester ta vue, tu as besoin de tâches dans la base de données !"
+
+> rails console
+
+> Task.create(title: "Laundry", details: "Do not mix colors!")
+> Task.create(title: "Studying", details: "A lot of flashcards to do", completed: true)
+
+###
+
+Vérifie que les tâches ont bien été créées en tapant :
+
+ruby
+Copier
+Task.all
+___
