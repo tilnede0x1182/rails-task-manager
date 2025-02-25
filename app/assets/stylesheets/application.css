@@ -13,3 +13,26 @@
  *= require_tree .
  *= require_self
  */
+/* Centrer le titre */
+h1 {
+  font-size: 2rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Espacer un peu la table */
+.table {
+  margin-top: 20px;
+}
+
+/* Styliser les badges */
+.badge {
+  font-size: 1rem;
+  padding: 5px 10px;
+}
+
+/* Espacer les boutons */
+.btn {
+  margin-right: 5px;
+}

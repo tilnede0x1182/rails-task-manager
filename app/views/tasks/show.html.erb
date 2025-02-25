@@ -1,5 +1,22 @@
-<h1><%= @task.title %></h1>
-<p><%= @task.details %></p>
-<p>Terminée : <%= @task.completed ? "Oui" : "Non" %></p>
-<%= link_to "Modifier", edit_task_path(@task) %></br>
-<%= link_to "Retour à la liste des tâches", tasks_path %>
+<div class="container mt-4">
+  <h1 class="text-center">Détails de la tâche</h1>
+
+  <div class="card shadow p-3 mb-5 bg-white rounded">
+    <div class="card-body">
+      <h3 class="card-title"><%= @task.title %></h3>
+      <p class="card-text"><strong>Détails :</strong> <%= @task.details %></p>
+      <p class="card-text">
+        <strong>Statut :</strong>
+        <% if @task.completed %>
+          <span class="badge bg-success">✅ Terminée</span>
+        <% else %>
+          <span class="badge bg-warning text-dark">⏳ En cours</span>
+        <% end %>
+      </p>
+      <div class="d-flex gap-2">
+        <%= link_to "✏ Modifier", edit_task_path(@task), class: "btn btn-outline-primary" %>
+        <%= link_to "⬅ Retour à la liste", tasks_path, class: "btn btn-outline-secondary" %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,33 +1,39 @@
-<h1>Liste des tâches</h1>
+<div class="container mt-4">
+  <h1 class="text-center mb-4">Liste des tâches</h1>
 
-<%= link_to "Créer une nouvelle tâche", new_task_path %>
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <%= link_to "➕ Ajouter une tâche", new_task_path, class: "btn btn-primary" %>
+  </div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Titre</th>
-      <th>Détails</th>
-      <th>Statut</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @tasks.each do |task| %>
+  <table class="table table-striped table-bordered">
+    <thead class="table-dark">
       <tr>
-        <td><%= link_to task.title, task_path(task) %></td>
-        <td><%= task.details %></td>
-        <td>
-          <% if task.completed %>
-            ✅ Terminée
-          <% else %>
-            ❌ En cours
-          <% end %>
-        </td>
-        <td>
-          <%= link_to "Modifier", edit_task_path(task) %> |
-					<%= button_to "Supprimer", task_path(task), method: :delete, form: { data: { turbo_confirm: "Etes-vous sûr(e) de vouloir supprimer cette tâche ?" } } %>
-        </td>
+        <th>Titre</th>
+        <th>Détails</th>
+        <th>Statut</th>
+        <th>Actions</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <% @tasks.each do |task| %>
+        <tr>
+          <td><%= link_to task.title, task_path(task), class: "text-decoration-none text-dark fw-bold" %></td>
+          <td><%= task.details %></td>
+          <td>
+            <% if task.completed %>
+              <span class="badge bg-success">✅ Terminée</span>
+            <% else %>
+              <span class="badge bg-warning text-dark">⏳ En cours</span>
+            <% end %>
+          </td>
+          <td class="d-flex gap-2">
+            <%= link_to "✏ Modifier", edit_task_path(task), class: "btn btn-sm btn-outline-info" %>
+            <%= button_to "🗑 Supprimer", task_path(task), method: :delete,
+                  form: { data: { turbo_confirm: "Etes-vous sûr(e) de vouloir supprimer cette tâche ?" } },
+                  class: "btn btn-sm btn-outline-danger" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

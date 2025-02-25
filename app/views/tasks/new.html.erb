@@ -1,3 +1,7 @@
-<h1>Nouvelle tâche</h1>
-<%= render "form" %>
-<%= link_to "Annuler", tasks_path %>
+<div class="container mt-4">
+  <h1 class="text-center">Nouvelle tâche</h1>
+  <%= render "form" %>
+  <div class="mt-3">
+    <%= link_to "Annuler", tasks_path, class: "btn btn-secondary" %>
+  </div>
+</div>
